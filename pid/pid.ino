@@ -33,7 +33,7 @@ int temp;
 Servo ServoMotor;
 int pino_motor = 9;
 int valor;
-int valorMax = 120;
+int valorMax = 70;
 int valorMin = 52;
 int count = 0;
 int inc = 1;
@@ -42,9 +42,8 @@ int digitalCheck = 0;
 
 
 double Setpoint, Input, Output;
-double Kp = 0.08, Ki = 0.08, Kd = 0.02; //posição 1
-//double Kp = 0.1, Ki = 0.0, Kd = 0.04; //posição 0
-double Offset = 52;
+double Kp = 0.03, Ki = 0.02, Kd = 0.06; //posição 1
+double Offset = 57;
 
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, REVERSE);
 
@@ -139,8 +138,8 @@ void loop() {
     Serial.println(valor);
   }
 
-  /*
-    if(count<750){
+/*
+    if(count<1500){
     ServoMotor.write(valor);
     count++;
     }else{
@@ -151,8 +150,7 @@ void loop() {
     valor += inc;
     count = 0;
     }
-  */
-
+*/
   while (micros() - loop_timer < 4000);                                //Wait until the loop_timer reaches 4000us (250Hz) before starting the next loop
   loop_timer = micros();//Reset the loop timer
 
