@@ -33,8 +33,9 @@ int temp;
 Servo ServoMotor;
 int pino_motor = 9;
 int valor;
-int valorMax = 70;
-int valorMin = 52;
+int valor_max = 70;
+int valor_min = 52;
+int intended_position = 0; //implementar
 int count = 0;
 int inc = 1;
 
@@ -42,7 +43,7 @@ int digitalCheck = 0;
 
 
 double Setpoint, Input, Output;
-double Kp = 0.03, Ki = 0.02, Kd = 0.06; //posição 1
+double Kp = 0.03, Ki = 0.02, Kd = 0.02; //posição 1
 double Offset = 57;
 
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, REVERSE);
@@ -127,12 +128,12 @@ void loop() {
   //Serial.println(Output);
   //Serial.println(Output);
   valor = Offset + (int)Output;
-  if (valor < valorMin) {
-    ServoMotor.write(valorMin);
-    Serial.println(valorMin);
-  } else if(valor > valorMax) {
-    ServoMotor.write(valorMax);
-    Serial.println(valorMax);
+  if (valor < valor_min) {
+    ServoMotor.write(valor_min);
+    Serial.println(valor_min);
+  } else if(valor > valor_max) {
+    ServoMotor.write(valor_max);
+    Serial.println(valor_max);
   } else {
     ServoMotor.write(valor);
     Serial.println(valor);
